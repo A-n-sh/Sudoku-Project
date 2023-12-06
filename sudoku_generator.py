@@ -1,4 +1,6 @@
 import math,random
+import sys
+from board import Board
 
 """
 This was adapted from a GeeksforGeeks article "Program for Sudoku Generator" by Aarti_Rathi and Ankur Trisal
@@ -23,7 +25,9 @@ class SudokuGenerator:
 	None
     '''
     def __init__(self, row_length, removed_cells):
-        pass
+
+        self.row_length = row_length
+        self.removed_cells = removed_cells
 
     '''
 	Returns a 2D python list of numbers which represents the board
@@ -32,7 +36,7 @@ class SudokuGenerator:
 	Return: list[list]
     '''
     def get_board(self):
-        pass
+        return self.board
 
     '''
 	Displays the board to the console
@@ -42,7 +46,8 @@ class SudokuGenerator:
 	Return: None
     '''
     def print_board(self):
-        pass
+        for row in self.board:
+            print(row)
 
     '''
 	Determines if num is contained in the specified row (horizontal) of the board
@@ -55,7 +60,7 @@ class SudokuGenerator:
 	Return: boolean
     '''
     def valid_in_row(self, row, num):
-        pass
+        return num not in self.board[row]
 
     '''
 	Determines if num is contained in the specified column (vertical) of the board
@@ -109,7 +114,9 @@ class SudokuGenerator:
 	Return: None
     '''
     def fill_box(self, row_start, col_start):
-        pass
+
+        self.row_start = row_start
+        self.col_start = col_start
     
     '''
     Fills the three boxes along the main diagonal of the board
@@ -186,6 +193,7 @@ class SudokuGenerator:
     '''
     def remove_cells(self):
         pass
+
 
 '''
 DO NOT CHANGE
