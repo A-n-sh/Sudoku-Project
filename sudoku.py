@@ -1,9 +1,10 @@
 import pygame
 import sys
 import constants
-#from sudoku_generator import SudokuGenerator
+from sudoku_generator import SudokuGenerator
 
 background_color = (255, 255, 255)
+
 def start_screen(win, start_title_font, button_font):
 
     win.fill(background_color)
@@ -68,13 +69,31 @@ def start_screen(win, start_title_font, button_font):
         if event.type == pygame.MOUSEBUTTONDOWN:
 
             if easy_rect.collidepoint(event.pos):
+                SudokuGenerator(9, 30)
+                SudokuGenerator.fill_diagonal()
+                SudokuGenerator.fill_remaining()
+                SudokuGenerator.remove_cells()
+                SudokuGenerator.print_board()
                 return game_screen(win, button_font)
+
 
             elif medium_rect.collidepoint(event.pos):
                 return game_screen(win, button_font)
+                SudokuGenerator(9, 40)
+                SudokuGenerator.fill_diagonal()
+                SudokuGenerator.fill_remaining()
+                SudokuGenerator.remove_cells()
+                SudokuGenerator.print_board()
+
 
             elif hard_rect.collidepoint(event.pos):
                 return game_screen(win, button_font)
+                SudokuGenerator(9, 50)
+                SudokuGenerator.fill_diagonal()
+                SudokuGenerator.fill_remaining()
+                SudokuGenerator.remove_cells()
+                SudokuGenerator.print_board()
+
 
     return easy_rect, medium_rect, hard_rect
 
@@ -146,7 +165,22 @@ def game_screen(win, button_font):
 
             win.blit(exit_surface, exit_rect)
 
-            pygame.display.update()
+            if pygame.mouse.get_pressed()[0]:
+
+                x, y = pygame.mouse.get_pos()
+                print(x, y)
+                new_x = 0
+                new_y = 0
+                for i in range(50, 500, 50):
+                    if x <= i:
+                        new_x = i - 25
+                for j in range(50, 500, 50):
+                    if y<= j:
+                        new_y = j - 25
+
+
+
+        pygame.display.update()
 
 
 GameState = "START"
@@ -205,13 +239,6 @@ def main():
 
 
         pygame.display.update()
-
-        # for event in pygame.event.get():
-
-            # if event.type == pygame.QUIT:
-            #     pygame.quit()
-            #     return
-
 
 
 main()
